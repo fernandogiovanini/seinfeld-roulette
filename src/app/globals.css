@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: theme('colors.cyber_yellow');
+  background-color: theme('colors.red_devil');
+  font-family: serif
+}
+
+.main {
+  @apply container flex flex-col mx-auto max-w-lg px-4;
+}
+
+.logo {
+  @apply py-4;
+}
+
+.title {
+  @apply text-lg text-center py-1;
+}
+
+.thumbnail {
+  @apply flex py-2;
+}
+
+.thumbnail > img {
+  @apply w-[500px];
+}
+
+.synopsis{
+  @apply py-2;
+}
+
+.actions {
+  @apply flex gap-4 py-2;
+}
+
+.btn-refresh {
+  @apply bg-cyber_yellow text-red_devil font-semibold rounded-lg text-lg text-center px-7 py-4 w-full	;
+}
+
+.btn-watch {
+  @apply bg-ultramarine_blue text-cyber_yellow font-semibold rounded-lg text-lg text-center px-7 py-5 w-full	;
+}  
+
