@@ -1,7 +1,7 @@
 'use client'
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { sendGAEvent } from '@next/third-parties/google'
+import { useCallback, useEffect, useState } from "react";
 import Episode, { EpisodeProps } from "./component/Episode";
 
 
@@ -26,9 +26,24 @@ function randomEpisode(episodes: EpisodeProps[]) {
 export default function Page() {  
   const [episode, setEpisode] = useState<EpisodeProps>()
 
+  const drawEpisode = useCallback(() => {
+    const episode = randomEpisode(episodes())
+    setEpisode(episode);
+    sendGAEvent({ event: 'episodeDrawn', value: `S${episode.season}E${episode.episode_number} - ${episode.title}` });
+  },[]);
+
+  const onRefresh = useCallback(() => {
+    sendGAEvent({ event: 'click', value: 'refresh' });
+    drawEpisode();
+  },[drawEpisode]);
+
+  const onWatch = useCallback((episode: EpisodeProps) => {
+    sendGAEvent({ event: 'click', value: 'watch', label: `S${episode.season}E${episode.episode_number} - ${episode.title}` });
+  },[sendGAEvent]);    
+
   useEffect(() => {
-    setEpisode(randomEpisode(episodes()));
-  }, []);
+    drawEpisode();
+  }, [drawEpisode]);
 
   return (
     <div className="main">
@@ -37,8 +52,8 @@ export default function Page() {
       <>
         <Episode {...episode} />
         <div className="actions">
-          <button className="btn-refresh" onClick={() => setEpisode(randomEpisode(episodes()))}>Another episode</button>
-          <a href={`https://www.netflix.com/watch/${episode.netflix_video_id}`} target="_blank" className="btn-watch">Watch it on Netflix</a>
+          <button className="btn-refresh" onClick={() => onRefresh()}>Another episode</button>
+          <a href={`https://www.netflix.com/watch/${episode.netflix_video_id}`} target="_blank" className="btn-watch" onClick={() => onWatch(episode)}>Watch it on Netflix</a>
         </div>
       </>)}
     </div>
