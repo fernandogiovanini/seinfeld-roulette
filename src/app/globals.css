@@ -37,10 +37,10 @@ body {
 }
 
 .btn-refresh {
-  @apply bg-cyber_yellow text-red_devil font-semibold rounded-lg text-lg text-center px-7 py-4 w-full	;
+  @apply bg-cyber_yellow text-red_devil font-semibold text-lg text-center px-7 py-4 w-full	;
 }
 
 .btn-watch {
-  @apply bg-ultramarine_blue text-cyber_yellow font-semibold rounded-lg text-lg text-center px-7 py-5 w-full	;
+  @apply bg-ultramarine_blue text-cyber_yellow font-semibold text-lg text-center px-7 py-5 w-full	;
 }  
 
