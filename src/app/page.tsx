@@ -32,8 +32,12 @@ export default function Page() {
     sendGAEvent({ event: 'episodeDrawn', value: `S${episode.season}E${episode.episode_number} - ${episode.title}` });
   },[]);
 
-  const onRefresh = useCallback(() => {
-    sendGAEvent({ event: 'click', value: 'refresh' });
+  const onRefresh = useCallback((episode?: EpisodeProps) => {
+    let label = 'No episode'
+    if (episode) {
+      label = `S${episode.season}E${episode.episode_number} - ${episode.title}`
+    }
+    sendGAEvent({ event: 'click', value: 'refresh', label });
     drawEpisode();
   },[drawEpisode]);
 
@@ -52,7 +56,7 @@ export default function Page() {
       <>
         <Episode {...episode} />
         <div className="actions">
-          <button className="btn-refresh" onClick={() => onRefresh()}>Another episode</button>
+          <button className="btn-refresh" onClick={() => onRefresh(episode)}>Another episode</button>
           <a href={`https://www.netflix.com/watch/${episode.netflix_video_id}`} target="_blank" className="btn-watch" onClick={() => onWatch(episode)}>Watch it on Netflix</a>
         </div>
       </>)}
