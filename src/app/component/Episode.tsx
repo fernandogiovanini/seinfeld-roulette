@@ -11,11 +11,12 @@ export interface EpisodeProps {
   
 
 const Episode = (episode: EpisodeProps) => {
+    const episodeDescription = `S${episode.season}E${episode.episode_number} - ${episode.title}`;
     return (
         <div className="episode">
-            <p className="title">S{episode.season}E{episode.episode_number} - {episode.title}</p>
+            <p className="title">{episodeDescription}</p>
             <div className="thumbnail">
-                <img src={`/thumb/${episode.netflix_video_id}.webp`} alt="Seinfeld episode" />
+                <img src={`/thumb/${episode.netflix_video_id}.webp`} alt={episodeDescription} />
             </div>          
             <p className="synopsis">{episode.synopsis} ({episode.duration})</p>
         </div>
