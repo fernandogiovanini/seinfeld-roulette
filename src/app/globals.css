@@ -5,15 +5,24 @@
 body {
   color: theme('colors.cyber_yellow');
   background-color: theme('colors.red_devil');
-  font-family: serif
+  font-family: serif;
+  @apply h-full m-0 flex flex-col;
 }
 
 .main {
   @apply container flex flex-col mx-auto max-w-lg px-4;
 }
 
-.logo {
-  @apply py-4;
+.episode {
+  @apply min-h-screen;
+}
+
+.footer {
+  @apply flex sticky bottom-0 justify-center py-2;
+}
+
+.header {
+  @apply py-2;
 }
 
 .title {
@@ -24,11 +33,11 @@ body {
   @apply flex py-2;
 }
 
-.thumbnail > img {
+.thumbnail>img {
   @apply w-[500px];
 }
 
-.synopsis{
+.synopsis {
   @apply py-2;
 }
 
@@ -37,10 +46,9 @@ body {
 }
 
 .btn-refresh {
-  @apply bg-cyber_yellow text-red_devil font-semibold text-lg text-center px-7 py-4 w-full	;
+  @apply bg-cyber_yellow text-red_devil font-semibold text-lg text-center px-7 py-4 w-full;
 }
 
 .btn-watch {
-  @apply bg-ultramarine_blue text-cyber_yellow font-semibold text-lg text-center px-7 py-5 w-full	;
-}  
-
+  @apply bg-ultramarine_blue text-cyber_yellow font-semibold text-lg text-center px-7 py-5 w-full;
+}
